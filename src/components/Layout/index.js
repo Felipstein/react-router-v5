@@ -1,32 +1,23 @@
 import React from 'react';
+import { BrowserRouter, Link } from 'react-router-dom';
 
 import Header from '../Header';
-import PostsList from '../PostsList';
 import Footer from '../Footer';
 
-export default class Layout extends React.Component {
+import Routes from '../../Routes';
 
-  componentDidMount() {
-    document.addEventListener('scroll', this.handleScroll);
-  }
+import { Nav } from './styles';
 
-  componentWillUnmount() {
-    console.debug('Componente vai desmontar...');
-    document.removeEventListener('scroll', this.handleScroll);
-  }
-
-  handleScroll = () => {
-    console.debug('scrolled...');
-  }
-
-  render() {
-    return (
-      <>
-        <Header />
-        <PostsList />
-        <Footer />
-      </>
-    );
-  }
-
+export default function Layout() {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Nav>
+        <Link to="/">Home</Link>
+        <Link to="/posts">Posts</Link>
+      </Nav>
+      <Routes />
+      <Footer />
+    </BrowserRouter>
+  );
 }
